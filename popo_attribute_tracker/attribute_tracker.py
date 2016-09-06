@@ -20,37 +20,37 @@ class TrackerConfigurationError(Exception):
 
 class AttributeTrackerMixin(object):
 
-    def _track_fields(self):
+    def _track_attrs(self):
         self._original_attrs = {}
 
         for attr in self.TRACKED_ATTRS:
             self._original_attrs[attr] = self.__dict__.get(attr, None)
 
     def reset_tracker(self):
-        self._track_fields()
+        self._track_attrs()
 
-    def initialize_tracker(self, fields=None):
+    def initialize_tracker(self, attrs=None):
 
-        if fields:
-            self.TRACKED_ATTRS = fields
+        if attrs:
+            self.TRACKED_ATTRS = attrs
 
         if not hasattr(self, 'TRACKED_ATTRS'):
             raise TrackerConfigurationError
 
-        self._track_fields()
+        self._track_attrs()
 
-    def _field_changed(self, field):
-        return self._original_attrs.get(field) != getattr(self, field, None)
+    def _attr_changed(self, attr):
+        return self._original_attrs.get(attr) != getattr(self, attr, None)
 
-    def has_changed(self, field=None):
+    def has_changed(self, attr=None):
 
-        if field:
-            return self._field_changed(field)
+        if attr:
+            return self._attr_changed(attr)
 
-        return any(self._field_changed(field) for field in self.TRACKED_ATTRS)
+        return any(self._attr_changed(attr) for attr in self.TRACKED_ATTRS)
 
-    def previous(self, field):
-        return self._original_attrs.get(field)
+    def previous(self, attr):
+        return self._original_attrs.get(attr)
 
 
 

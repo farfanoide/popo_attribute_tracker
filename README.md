@@ -1,13 +1,14 @@
-POPO Attribtue Tracker
+POPO Attribute Tracker
 ======================
 
-This is a simple mixin to ease tracking of attribute changes in any python
-object. It's designed to be as simple as possible.
+This is a simple mixin to ease tracking of attribute changes in any :shit: POPO
+(Plain Old Python Object). It's designed to be as simple and unobtrusive as
+possible.
 
 Usage
 -----
 
-Simply inherit from `POPOAttributeTrackerMixin`, configure the `TRACKED_ATTRS`
+Simply inherit from `AttributeTrackerMixin`, configure the `TRACKED_ATTRS`
 as a list of attribute names to track and initialize the tracker.
 
 ```python
@@ -28,22 +29,22 @@ class Alice(AttributeTrackerMixin):
 alice = Alice(name='Alice', last_name='Liddell')
 
 # Ask if any attribute changed
-alice.has_changed() # => False
+alice.has_changed()       #=> False
 
 alice.name = 'Bob'
-alice.has_changed()       # => True
+alice.has_changed()       #=> True
 
 # You can also ask if a specific attribute has changed
-alice.has_changed('name') # => True
+alice.has_changed('name') #=> True
 
 # Get previous value for changed attribute
-alice.previous('name')    # => 'Alice'
+alice.previous('name')    #=> 'Alice'
 
 # Reset the tracker, normally after saving to a DB
 alice.reset_tracker()
 ```
 
-If you wanted to use it in a django model you could use django Signals to
+If you want to use it in a django model you could use django Signals to
 initialize and reset the tracker.
 
 ```python
@@ -53,8 +54,8 @@ def initialize_tracker(sender, instance, **kwargs):
 ```
 
 ```python
-@receiver(signals.post_init, sender=SomeDjangoModel)
-def initialize_tracker(sender, instance, **kwargs):
-    instance.initialize_tracker()
+@receiver(signals.post_save, sender=SomeDjangoModel)
+def reset_tracker(sender, instance, **kwargs):
+    instance.reset_tracker()
 ```
 
