@@ -6,7 +6,7 @@ from __future__ import print_function
 
 from unittest import TestCase
 
-from popo_attribute_tracker import AttributeTrackerMixin
+from .attribute_tracker import AttributeTrackerMixin, TrackerConfigurationError
 
 
 class AttributeTrackerMixinTest(TestCase):
@@ -54,3 +54,7 @@ class AttributeTrackerMixinTest(TestCase):
         self.tracker.initialize_tracker(['a'])
         self.assertFalse(self.tracker.has_changed('a'))
 
+    def test_it_raises_error_if_not_configured_correctly(self):
+        tracker = AttributeTrackerMixin()
+        with self.assertRaises(TrackerConfigurationError):
+            tracker.initialize_tracker()
