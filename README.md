@@ -11,6 +11,9 @@ Usage
 Simply inherit from `AttributeTrackerMixin`, configure the `TRACKED_ATTRS`
 as a list of attribute names to track and initialize the tracker.
 
+While initializing the tracker you may optionally send an iterable containing
+names of attributes to track in case you need to get them dynamically
+
 ```python
 # Example
 
