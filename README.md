@@ -17,7 +17,7 @@ names of attributes to track in case you need to get them dynamically
 ```python
 # Example
 
-from popo_attribute_tracker import AttributeTrackerMixin
+from popo_attribute_tracker.attribute_tracker import AttributeTrackerMixin
 
 class Alice(AttributeTrackerMixin):
 
