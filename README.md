@@ -5,6 +5,8 @@ This is a simple mixin to ease tracking of attribute changes in any :shit: POPO
 (Plain Old Python Object). It's designed to be as simple and unobtrusive as
 possible.
 
+[![Build Status](https://travis-ci.org/farfanoide/popo_attribute_tracker.svg?branch=master)](https://travis-ci.org/farfanoide/popo_attribute_tracker)
+
 Installation
 ------------
 
