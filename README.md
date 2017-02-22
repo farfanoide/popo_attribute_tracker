@@ -5,6 +5,15 @@ This is a simple mixin to ease tracking of attribute changes in any :shit: POPO
 (Plain Old Python Object). It's designed to be as simple and unobtrusive as
 possible.
 
+Installation
+------------
+
+Download from github or via pip:
+
+```bash
+pip install popo_attribute_tracker
+```
+
 Usage
 -----
 
@@ -47,7 +56,10 @@ alice.previous('name')    #=> 'Alice'
 alice.reset_tracker()
 ```
 
-If you want to use it in a django model you could use django Signals to
+Django compatibility
+--------------------
+
+If you want to use it in a django model you could use django [Signals][] to
 initialize and reset the tracker.
 
 ```python
@@ -62,3 +74,29 @@ def reset_tracker(sender, instance, **kwargs):
     instance.reset_tracker()
 ```
 
+[Signals]: https://docs.djangoproject.com/en/dev/topics/signals/
+
+Tests
+-----
+
+Install requirements and run `py.test`
+
+```bash
+pip install -r requirements.txt
+
+py.test
+```
+
+Contributing
+------------
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
+
+License
+-------
+
+See the [LICENSE](LICENSE).
