@@ -24,7 +24,7 @@ class AttributeTrackerMixin(object):
         self._original_attrs = {}
 
         for attr in self.TRACKED_ATTRS:
-            self._original_attrs[attr] = self.__dict__.get(attr, None)
+            self._original_attrs[attr] = getattr(self, attr, None)
 
     def reset_tracker(self):
         self._track_attrs()
